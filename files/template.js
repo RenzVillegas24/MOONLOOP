@@ -2,8 +2,9 @@ var head = document.getElementsByTagName('head')[0];
 
 head.innerHTML += ` 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">    
-    <link rel="icon" href="http://example.com/favicon.png">
-    `
+    <link id="icon" rel="icon" href="${window.location.origin}/files/images/icon/MoonbaseDark.png">
+    `;
+
 
 var jQueryScript = document.createElement('script');
 jQueryScript.type = 'text/javascript';
@@ -38,3 +39,15 @@ function jQueryOnLoad(){
 
 }
 
+console.log(`${window.location.origin}/files/images/icon/MoonbaseDark.png`)
+if(window.matchMedia){
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        //dark mode
+        if (event.matches)
+            $("#icon").attr('href', `${window.location.origin}/files/images/icon/MoonbaseLight.png`);
+        //light mode
+        else
+            $("#icon").attr('href', `${window.location.origin}/files/images/icon/MoonbaseDark.png`);
+
+    });
+}
